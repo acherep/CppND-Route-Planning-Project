@@ -9,8 +9,10 @@ RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, floa
     end_x *= 0.01;
     end_y *= 0.01;
 
-    // TODO 2: Use the m_Model.FindClosestNode method to find the closest nodes to the starting and ending coordinates.
-    // Store the nodes you find in the RoutePlanner's start_node and end_node attributes.
+    // Find the closest nodes to the starting and ending coordinates.
+    // Store the nodes in the RoutePlanner's start_node and end_node attributes.
+    start_node = &m_Model.FindClosestNode(start_x, start_y);
+    end_node = &m_Model.FindClosestNode(end_x, end_y);
 }
 
 // TODO 3: Implement the CalculateHValue method.
@@ -20,6 +22,7 @@ RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, floa
 
 float RoutePlanner::CalculateHValue(RouteModel::Node const *node)
 {
+    return node->distance(*end_node);
 }
 
 // TODO 4: Complete the AddNeighbors method to expand the current node by adding all unvisited neighbors to the open list.
