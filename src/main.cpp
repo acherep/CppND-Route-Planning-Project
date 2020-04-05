@@ -57,21 +57,22 @@ int main(int argc, const char **argv)
 
     // Get user input for the starting and end points
 
-    constexpr int N_INPUT = 4;
-    float initial_input[N_INPUT];
-    std::string initial_input_labels[]{"start x: ", "start y: ", "end x:   ", "end y:   "};
+    // constexpr int N_INPUT = 4;
+    // float initial_input[N_INPUT];
+    // std::string initial_input_labels[]{"start x: ", "start y: ", "end x:   ", "end y:   "};
 
-    for (int i = 0; i < N_INPUT; ++i)
-    {
-        std::cout << initial_input_labels[i];
-        std::cin >> initial_input[i];
-    }
+    // for (int i = 0; i < N_INPUT; ++i)
+    // {
+    //     std::cout << initial_input_labels[i];
+    //     std::cin >> initial_input[i];
+    // }
 
     // Build Model.
     RouteModel model{osm_data};
 
     // Create RoutePlanner object and perform A* search.
-    RoutePlanner route_planner{model, initial_input[0], initial_input[1], initial_input[2], initial_input[3]};
+    // RoutePlanner route_planner{model, initial_input[0], initial_input[1], initial_input[2], initial_input[3]};
+    RoutePlanner route_planner{model, 1, 1, 100, 100};
     route_planner.AStarSearch();
 
     std::cout << "Distance: " << route_planner.GetDistance() << " meters. \n";
