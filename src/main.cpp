@@ -63,8 +63,21 @@ int main(int argc, const char **argv)
 
     for (int i = 0; i < N_INPUT; ++i)
     {
-        std::cout << initial_input_labels[i];
-        std::cin >> initial_input[i];
+        float input = 0.0f;
+        bool isInputWrong = true;
+        do
+        {
+            std::cout << initial_input_labels[i];
+            std::cin >> input;
+
+            isInputWrong = input < 0 || input > 100;
+            if (isInputWrong)
+            {
+                std::cout << "Wrong input! Please enter a float between 0 and 100..." << std::endl;
+            }
+        } while (isInputWrong);
+
+        initial_input[i] = input;
     }
 
     // Build Model.
